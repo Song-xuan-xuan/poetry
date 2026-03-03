@@ -66,3 +66,10 @@ class QuizExplainRequest(BaseModel):
 class QuizSummaryRequest(BaseModel):
     """答题 AI 总结请求"""
     results: List[Dict[str, Any]] = Field(..., description="答题记录列表")
+
+
+class VideoGenerateRequest(BaseModel):
+    """文生视频请求"""
+    poem_text: str = Field(..., description="诗词文本", examples=["床前明月光，疑是地上霜。举头望明月，低头思故乡。"])
+    title: str = Field("", description="诗词标题", examples=["静夜思"])
+    style: str = Field("水墨国风", description="视频风格")

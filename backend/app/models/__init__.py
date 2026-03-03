@@ -4,6 +4,7 @@ from .request import (
     ImageGenerateRequest, ImagePoemRequest,
     ChainHintRequest, ChainAIValidateRequest, ChainAITurnRequest,
     QuizExplainRequest, QuizSummaryRequest,
+    VideoGenerateRequest,
 )
 
 __all__ = [
@@ -21,4 +22,5 @@ __all__ = [
     "ChainAITurnRequest",
     "QuizExplainRequest",
     "QuizSummaryRequest",
+    "VideoGenerateRequest",
 ]

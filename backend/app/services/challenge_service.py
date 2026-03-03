@@ -1,4 +1,5 @@
 """挑战服务 — 飞花令 & 答题闯关（含 AI 增强）"""
+import json
 import logging
 import random
 import uuid

@@ -2,7 +2,7 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import search_router, poem_router, challenge_router, generate_router, image_router
+from app.routers import search_router, poem_router, challenge_router, generate_router, image_router, video_router
 from app.database import poems_collection, ensure_indexes
 from app.models import Author, Analysis
 
@@ -37,6 +37,7 @@ app.include_router(poem_router)
 app.include_router(challenge_router)
 app.include_router(generate_router)
 app.include_router(image_router)
+app.include_router(video_router)
 
 
 @app.get("/", tags=["健康检查"])

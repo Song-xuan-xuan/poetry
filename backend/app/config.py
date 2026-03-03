@@ -26,6 +26,11 @@ class Settings(BaseSettings):
     VISION_BASE_URL: str = "https://api.openai.com/v1"
     VISION_MODEL: str = "gpt-4o"
 
+    # 视频生成 API 配置（智谱 CogVideoX）
+    VIDEO_API_KEY: str = ""
+    VIDEO_BASE_URL: str = "https://open.bigmodel.cn/api/paas/v4/"
+    VIDEO_MODEL: str = "cogvideox-flash"
+
     class Config:
         env_file = ".env"
 
