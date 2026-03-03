@@ -1,0 +1,26 @@
+/* Apple + 国风融合 CSS 变量 */
+:root {
+  /* 基础色 */
+  --color-primary: #c8851a;
+  --color-primary-light: #f5d68a;
+  --color-accent: #e54d42;
+  --color-success: #12aa9c;
+
+  /* Apple 背景灰阶 */
+  --color-bg: #FAFAF8;
+  --color-bg-secondary: #F2F1EF;
+  --color-card: rgba(255, 255, 255, 0.80);
+  --color-card-solid: #FFFFFF;
+  --color-divider: rgba(0, 0, 0, 0.06);
+
+  /* 文字 */
+  --color-text-primary: #1D1D1F;
+  --color-text-secondary: #6E6E73;
+  --color-text-tertiary: #AEAEB2;
+
+  /* 国风点缀 */
+  --color-gold: #c8851a;
+  --color-gold-light: #f5d68a;
+  --color-vermilion: #e54d42;
+  --color-cyan: #12aa9c;
+}

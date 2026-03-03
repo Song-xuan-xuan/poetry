@@ -1,0 +1,210 @@
+@import './chinese-colors.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 全局基础样式 - Apple + 国风融合 */
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #FAFAF8;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1D1D1F;
+}
+
+#app {
+  min-height: 100vh;
+  background-color: #FAFAF8;
+  position: relative;
+}
+
+/* 响应式内容容器 */
+.content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 768px) {
+  .content-container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* 阅读区域 - 最佳行宽 */
+.reading-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* 诗词正文专用排版 */
+.poem-body {
+  font-family: 'Noto Serif SC', 'KaiTi', '楷体', 'STKaiti', serif;
+  line-height: 2;
+  letter-spacing: 0.05em;
+}
+
+.poem-title {
+  font-family: 'Noto Serif SC', 'KaiTi', '楷体', 'STKaiti', serif;
+  font-weight: 600;
+}
+
+/* Apple 风格分割线 */
+.divider-line {
+  height: 0.5px;
+  background-color: rgba(0, 0, 0, 0.06);
+  margin: 16px 0;
+}
+
+/* 国风渐变分割线 (精简版) */
+.divider-brush {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 133, 26, 0.3), rgba(200, 133, 26, 0.5), rgba(200, 133, 26, 0.3), transparent);
+  margin: 16px 0;
+}
+
+/* Apple 磨砂玻璃卡片 */
+.glass-card {
+  background: rgba(255, 255, 255, 0.80);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 带国风渐变装饰线的卡片 */
+.glass-card-accent {
+  background: rgba(255, 255, 255, 0.80);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card-accent::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #c8851a, #e54d42);
+}
+
+/* glass-card 响应式增强 */
+@media (min-width: 768px) {
+  .glass-card,
+  .glass-card-accent {
+    border-radius: 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  }
+}
+
+/* glass-card hover 交互 (仅桌面) */
+@media (hover: hover) {
+  .glass-card-hover:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10), 0 4px 8px rgba(0, 0, 0, 0.04);
+    transform: translateY(-2px);
+    transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+}
+
+/* 页面进入动画 - Apple 风格 */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-8px);
+}
+
+/* Vant 主题覆盖 - Apple 风格 */
+:root {
+  --van-primary-color: #c8851a;
+  --van-success-color: #12aa9c;
+  --van-danger-color: #e54d42;
+  --van-background: #FAFAF8;
+  --van-background-2: #F2F1EF;
+  --van-nav-bar-background: rgba(250, 250, 248, 0.72);
+  --van-nav-bar-title-font-size: 17px;
+  --van-nav-bar-height: 44px;
+  --van-tab-active-text-color: #c8851a;
+  --van-tabs-bottom-bar-color: #c8851a;
+  --van-button-primary-background: #c8851a;
+  --van-button-primary-border-color: #c8851a;
+  --van-button-border-radius: 10px;
+  --van-cell-background: transparent;
+  --van-field-input-text-color: #1D1D1F;
+  --van-field-placeholder-text-color: #AEAEB2;
+  --van-search-background: transparent;
+  --van-list-text-color: #AEAEB2;
+  --van-list-text-font-size: 13px;
+  --van-list-text-line-height: 40px;
+}
+
+/* 安全区域适配 */
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Apple 风格标签 */
+.tag-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  background-color: #F2F1EF;
+  color: #1D1D1F;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.tag-item:active {
+  transform: scale(0.96);
+}
+
+.tag-active {
+  background-color: #c8851a;
+  color: white;
+}
+
+/* 减弱运动偏好适配 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
