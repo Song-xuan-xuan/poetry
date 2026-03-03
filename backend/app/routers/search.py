@@ -18,12 +18,24 @@ async def search(
     return Result.success({"items": poems, "total": total, "page": page, "page_size": page_size})
 
 
-@router.get("/poems", summary="列出所有诗词（分页）")
+@router.get("/poems/filters", summary="获取诗词筛选项（朝代、体裁、作者、标签）")
+async def get_filters():
+    options = await search_service.get_filter_options()
+    return Result.success(options)
+
+
+@router.get("/poems", summary="列出所有诗词（分页，支持分类筛选）")
 async def list_all(
     page: int = Query(1, ge=1, description="页码"),
     page_size: int = Query(18, ge=1, le=100, description="每页条数"),
+    dynasty: Optional[str] = Query(None, description="按朝代筛选"),
+    genre: Optional[str] = Query(None, description="按体裁筛选"),
+    author: Optional[str] = Query(None, description="按作者筛选"),
+    tag: Optional[str] = Query(None, description="按标签筛选"),
 ):
-    poems, total = await search_service.find_all_poems(page, page_size)
+    poems, total = await search_service.find_poems_filtered(
+        page, page_size, dynasty=dynasty, genre=genre, author=author, tag=tag
+    )
     return Result.success({"items": poems, "total": total, "page": page, "page_size": page_size})
 
 

@@ -15,3 +15,5 @@ async def ensure_indexes():
     await poems_collection.create_index("author.name")
     await poems_collection.create_index("tags")
     await poems_collection.create_index("sort_order")
+    await poems_collection.create_index("dynasty")
+    await poems_collection.create_index("genre")

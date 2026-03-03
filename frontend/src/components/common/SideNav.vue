@@ -50,6 +50,7 @@ const IconQuiz = { render: () => h('svg', { xmlns: 'http://www.w3.org/2000/svg',
 const IconPen = { render: () => h('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [h('path', { d: 'M12 20h9' }), h('path', { d: 'M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z' })]) }
 const IconWand = { render: () => h('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [h('path', { d: 'M15 4V2' }), h('path', { d: 'M15 16v-2' }), h('path', { d: 'M8 9h2' }), h('path', { d: 'M20 9h2' }), h('path', { d: 'M17.8 11.8L19 13' }), h('path', { d: 'M15 9h0' }), h('path', { d: 'M17.8 6.2L19 5' }), h('path', { d: 'M3 21l9-9' }), h('path', { d: 'M12.2 6.2L11 5' })]) }
 const IconImage = { render: () => h('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [h('rect', { x: '3', y: '3', width: '18', height: '18', rx: '2', ry: '2' }), h('circle', { cx: '8.5', cy: '8.5', r: '1.5' }), h('polyline', { points: '21 15 16 10 5 21' })]) }
+const IconVideo = { render: () => h('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [h('path', { d: 'M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z' }), h('circle', { cx: '12', cy: '13', r: '3' })]) }
 
 const sections = [
   {
@@ -75,7 +76,8 @@ const sections = [
     items: [
       { name: '诗词创作', path: '/create', icon: IconPen },
       { name: '仿写工坊', path: '/create/mimic', icon: IconWand },
-      { name: '诗画互生', path: '/create/image', icon: IconImage }
+      { name: '诗画互生', path: '/create/image', icon: IconImage },
+      { name: '诗境动画', path: '/create/video', icon: IconVideo }
     ]
   }
 ]

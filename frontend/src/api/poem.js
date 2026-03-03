@@ -12,13 +12,27 @@ export function searchPoems(q, page = 1, pageSize = 18) {
 }
 
 /**
- * 获取所有诗词列表（分页）
+ * 获取所有诗词列表（分页，支持分类筛选）
  * @param {number} page 页码
  * @param {number} pageSize 每页条数
+ * @param {Object} filters 筛选条件 { dynasty, genre, author, tag }
  * @returns {{ items: Array, total: number, page: number, page_size: number }}
  */
-export function getAllPoems(page = 1, pageSize = 18) {
-  return request.get('/poems', { params: { page, page_size: pageSize } })
+export function getAllPoems(page = 1, pageSize = 18, filters = {}) {
+  const params = { page, page_size: pageSize }
+  if (filters.dynasty) params.dynasty = filters.dynasty
+  if (filters.genre) params.genre = filters.genre
+  if (filters.author) params.author = filters.author
+  if (filters.tag) params.tag = filters.tag
+  return request.get('/poems', { params })
+}
+
+/**
+ * 获取诗词筛选项（朝代、体裁、作者、标签）
+ * @returns {{ dynasties: string[], genres: string[], authors: string[], tags: string[] }}
+ */
+export function getFilterOptions() {
+  return request.get('/poems/filters')
 }
 
 /**
