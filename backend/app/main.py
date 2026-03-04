@@ -2,7 +2,7 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import search_router, poem_router, challenge_router, generate_router, image_router, video_router
+from app.routers import search_router, poem_router, challenge_router, generate_router, image_router, video_router, assistant_router, imagery_router
 from app.database import poems_collection, ensure_indexes
 from app.models import Author, Analysis
 
@@ -38,6 +38,8 @@ app.include_router(challenge_router)
 app.include_router(generate_router)
 app.include_router(image_router)
 app.include_router(video_router)
+app.include_router(assistant_router)
+app.include_router(imagery_router)
 
 
 @app.get("/", tags=["健康检查"])
@@ -47,9 +49,20 @@ async def root():
 
 async def init_sample_data():
     """初始化示例诗词数据（如果数据库为空）"""
+    # 清理 AI 生成的诗词（不应留在诗词库中）
+    ai_filter = {
+        "$or": [
+            {"_id": {"$regex": "^(gen-|mimic-|vision-)"}},
+            {"author.name": {"$in": ["AI诗人", "AI写手", "AI润色", "AI诗人（看图写诗）"]}},
+        ]
+    }
+    deleted = await poems_collection.delete_many(ai_filter)
+    if deleted.deleted_count > 0:
+        print(f"已清理 {deleted.deleted_count} 首 AI 生成的诗词")
+
     count = await poems_collection.count_documents({})
     if count > 0:
-        print("数据库已有数据，跳过初始化")
+        print(f"数据库已有 {count} 首诗词，跳过初始化")
         return
 
     print("初始化示例诗词数据...")

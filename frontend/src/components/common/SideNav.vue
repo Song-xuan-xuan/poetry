@@ -52,14 +52,17 @@ const IconWand = { render: () => h('svg', { xmlns: 'http://www.w3.org/2000/svg',
 const IconImage = { render: () => h('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [h('rect', { x: '3', y: '3', width: '18', height: '18', rx: '2', ry: '2' }), h('circle', { cx: '8.5', cy: '8.5', r: '1.5' }), h('polyline', { points: '21 15 16 10 5 21' })]) }
 const IconVideo = { render: () => h('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [h('path', { d: 'M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z' }), h('circle', { cx: '12', cy: '13', r: '3' })]) }
 
+const IconCompass = { render: () => h('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', 'stroke-width': '1.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, [h('circle', { cx: '12', cy: '12', r: '10' }), h('polygon', { points: '16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76' })]) }
+
 const sections = [
   {
     name: 'learn',
     label: '鉴赏',
     items: [
       { name: '首页', path: '/', icon: IconBook },
-      { name: '搜索', path: '/search', icon: IconSearch },
-      { name: '诗词库', path: '/poems', icon: IconLibrary }
+      // { name: '搜索', path: '/search', icon: IconSearch },
+      { name: '诗词库', path: '/poems', icon: IconLibrary },
+      { name: '诗境漫游', path: '/explore/imagery', icon: IconCompass }
     ]
   },
   {

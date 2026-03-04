@@ -1,5 +1,5 @@
 """请求模型"""
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Literal, Dict, Any
 from pydantic import BaseModel, Field
 
 
@@ -73,3 +73,24 @@ class VideoGenerateRequest(BaseModel):
     poem_text: str = Field(..., description="诗词文本", examples=["床前明月光，疑是地上霜。举头望明月，低头思故乡。"])
     title: str = Field("", description="诗词标题", examples=["静夜思"])
     style: str = Field("水墨国风", description="视频风格")
+
+
+class ImageryAnalyzeRequest(BaseModel):
+    """意象分析请求"""
+    poem_text: str = Field(..., min_length=1, max_length=2000, description="诗词文本")
+    title: str = Field("", description="诗词标题")
+    author: str = Field("", description="作者")
+    poem_id: Optional[str] = Field(None, description="已有诗词 ID（可选）")
+
+
+class AssistantChatMessage(BaseModel):
+    """AI 助手对话消息"""
+    role: Literal["user", "assistant"] = Field(..., description="消息角色")
+    content: str = Field(..., min_length=1, max_length=1000, description="消息内容")
+
+
+class AssistantChatRequest(BaseModel):
+    """AI 助手对话请求"""
+    message: str = Field(..., min_length=1, max_length=1000, description="用户消息")
+    history: List[AssistantChatMessage] = Field(default_factory=list, description="对话历史")
+    session_id: Optional[str] = Field(None, description="会话 ID")

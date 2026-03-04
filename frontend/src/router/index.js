@@ -84,6 +84,12 @@ const routes = [
     component: () => import('@/views/create/VideoView.vue'),
     meta: { title: '诗境动画' }
   },
+  {
+    path: '/explore/imagery',
+    name: 'Imagery',
+    component: () => import('@/views/explore/ImageryView.vue'),
+    meta: { title: '诗境漫游' }
+  },
   // 404
   {
     path: '/:pathMatch(.*)*',
