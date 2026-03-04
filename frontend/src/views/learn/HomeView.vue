@@ -147,15 +147,19 @@ function onSearchFocus() {
 /* ===== Hero Section ===== */
 .hero-section {
   position: relative;
-  background: linear-gradient(135deg, #FAF9F6 0%, #F0EDE6 50%, #EBE6DB 100%);
-  border-bottom: 0.5px solid rgba(200, 133, 26, 0.1);
+  background: linear-gradient(135deg,
+    rgba(250, 247, 240, 0.6) 0%,
+    rgba(240, 235, 225, 0.5) 50%,
+    rgba(245, 238, 226, 0.4) 100%
+  );
+  border-bottom: 1px solid rgba(200, 133, 26, 0.12);
   overflow: hidden;
 }
 
 .hero-bg-pattern {
   position: absolute;
   inset: 0;
-  opacity: 0.03;
+  opacity: 0.04;
   background-image:
     radial-gradient(circle at 20% 50%, #c8851a 1px, transparent 1px),
     radial-gradient(circle at 80% 20%, #e54d42 1px, transparent 1px),
@@ -164,10 +168,11 @@ function onSearchFocus() {
 }
 
 .search-box {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 0.5px solid rgba(0, 0, 0, 0.06);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 133, 26, 0.10);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 /* ===== Feature Cards — 横向滚动 (移动端) ===== */
@@ -191,10 +196,11 @@ function onSearchFocus() {
   gap: 8px;
   padding: 10px 14px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(200, 133, 26, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   cursor: pointer;
   transition: all 0.2s ease;
   scroll-snap-align: start;
@@ -251,13 +257,15 @@ function onSearchFocus() {
 
 /* ===== 每日诗句卡片 ===== */
 .daily-poem-card {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(245, 214, 138, 0.12));
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.75), rgba(245, 214, 138, 0.10));
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 16px;
   padding: 20px;
-  border: 0.5px solid rgba(200, 133, 26, 0.12);
-  box-shadow: 0 2px 12px rgba(200, 133, 26, 0.06);
+  border: 1px solid rgba(200, 133, 26, 0.12);
+  box-shadow:
+    0 2px 8px rgba(200, 133, 26, 0.06),
+    inset 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
 .daily-poem-header {
@@ -277,12 +285,13 @@ function onSearchFocus() {
 
 /* ===== 快捷入口卡片 ===== */
 .quick-links-card {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 16px;
   padding: 16px;
-  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(200, 133, 26, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .quick-link-item {
@@ -294,8 +303,9 @@ function onSearchFocus() {
   font-size: 13px;
   font-weight: 500;
   color: #6E6E73;
-  background: rgba(0, 0, 0, 0.02);
-  border: none;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(200, 133, 26, 0.06);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
   cursor: pointer;
   transition: all 0.15s ease;
   width: 100%;
@@ -303,8 +313,9 @@ function onSearchFocus() {
 }
 
 .quick-link-item:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgba(200, 133, 26, 0.05);
   color: #1D1D1F;
+  border-color: rgba(200, 133, 26, 0.10);
 }
 
 .quick-link-item:active {

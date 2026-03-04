@@ -8,7 +8,22 @@
 
     <div class="content-container px-5 lg:px-0">
       <!-- 输入区 -->
-      <div v-if="!result" class="input-section">
+      <!-- 加载中（全页） -->
+      <div v-if="loading" class="loading-section animate-fade-in">
+        <div class="loading-card">
+          <div class="loading-compass">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 text-primary">
+              <circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+            </svg>
+          </div>
+          <p class="text-[16px] font-semibold text-ink mt-4">正在解读意境</p>
+          <p class="text-[13px] text-ink-light mt-1">AI 正在深度分析诗词意象，{{ elapsedText }}</p>
+          <div class="loading-bar mt-4"><div class="loading-bar-inner"></div></div>
+          <p v-if="poemTitle" class="text-[14px] text-ink-light mt-4 poem-body">{{ poemTitle }}</p>
+        </div>
+      </div>
+
+      <div v-if="!result && !loading" class="input-section">
         <div class="glass-card p-5 mb-4">
           <h3 class="text-[15px] font-semibold text-ink mb-3">输入诗词</h3>
           <textarea
@@ -53,14 +68,13 @@
 
         <button
           class="explore-btn w-full"
-          :disabled="!poemText.trim() || loading"
+          :disabled="!poemText.trim()"
           @click="startAnalysis"
         >
-          <svg v-if="!loading" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
             <circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
           </svg>
-          <span v-if="loading" class="loading-dots"><i></i><i></i><i></i></span>
-          {{ loading ? '正在解读意境…' : '开始探索' }}
+          开始探索
         </button>
       </div>
 
@@ -119,7 +133,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { analyzeImagery } from '@/api/imagery'
 import ImageryStarMap from '@/components/imagery/ImageryStarMap.vue'
@@ -134,6 +148,15 @@ const poemAuthor = ref('')
 const loading = ref(false)
 const result = ref(null)
 const selectedNode = ref(null)
+const elapsedSeconds = ref(0)
+let elapsedTimer = null
+
+const elapsedText = computed(() => {
+  const s = elapsedSeconds.value
+  if (s < 10) return '请稍候…'
+  if (s < 30) return `已用时 ${s} 秒…`
+  return `已用时 ${s} 秒，即将完成…`
+})
 
 const examples = [
   { title: '静夜思', author: '李白', text: '床前明月光\n疑是地上霜\n举头望明月\n低头思故乡' },
@@ -158,10 +181,17 @@ onMounted(() => {
   }
 })
 
+onUnmounted(() => {
+  if (elapsedTimer) clearInterval(elapsedTimer)
+})
+
 async function startAnalysis() {
   if (!poemText.value.trim() || loading.value) return
   loading.value = true
   selectedNode.value = null
+  result.value = null
+  elapsedSeconds.value = 0
+  elapsedTimer = setInterval(() => { elapsedSeconds.value++ }, 1000)
 
   try {
     const data = await analyzeImagery({
@@ -170,12 +200,15 @@ async function startAnalysis() {
       author: poemAuthor.value.trim(),
     })
     result.value = data
-  } catch {
+  } catch (err) {
+    console.error('[Imagery] 分析请求失败:', err)
     result.value = {
       poem_summary: '分析失败，请稍后再试。',
       imagery_nodes: [],
     }
   } finally {
+    clearInterval(elapsedTimer)
+    elapsedTimer = null
     loading.value = false
   }
 }
@@ -246,25 +279,56 @@ function goRelatedPoem(poem) {
   cursor: not-allowed;
 }
 
-.loading-dots {
+/* 加载中 */
+.loading-section {
+  display: flex;
+  justify-content: center;
+  padding: 40px 0 60px;
+}
+
+.loading-card {
+  text-align: center;
+  padding: 40px 32px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 20px;
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+  max-width: 360px;
+  width: 100%;
+}
+
+.loading-compass {
   display: inline-flex;
-  gap: 3px;
+  animation: compassSpin 3s ease-in-out infinite;
 }
 
-.loading-dots i {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: white;
-  animation: ldBounce 1s infinite;
+@keyframes compassSpin {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
 }
 
-.loading-dots i:nth-child(2) { animation-delay: 0.15s; }
-.loading-dots i:nth-child(3) { animation-delay: 0.3s; }
+.loading-bar {
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(200, 133, 26, 0.1);
+  overflow: hidden;
+}
 
-@keyframes ldBounce {
-  0%, 60%, 100% { opacity: 0.4; }
-  30% { opacity: 1; }
+.loading-bar-inner {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #c8851a, #d4922e);
+  animation: loadingSlide 2s ease-in-out infinite;
+  width: 40%;
+}
+
+@keyframes loadingSlide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
 }
 
 /* 结果区 */

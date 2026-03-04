@@ -3,7 +3,7 @@
     class="poem-card glass-card p-4 cursor-pointer active:scale-[0.98] transition-all duration-200"
     @click="$emit('click', poem)"
   >
-    <h3 class="poem-title text-[17px] text-ink mb-1.5">
+    <h3 class="poem-title text-[17px] text-ink mb-1.5 tracking-tight font-bold">
       {{ poem.title || '无题' }}
     </h3>
     <div class="flex items-center gap-2 text-ink-light text-[13px] mb-2.5">
@@ -42,12 +42,14 @@ const previewContent = computed(() => {
 <style scoped>
 .poem-card {
   position: relative;
-  border-left: 2px solid transparent;
+  border-left: 2px solid rgba(200, 133, 26, 0.15);
 }
 
 @media (hover: hover) {
   .poem-card:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+    box-shadow:
+      var(--shadow-card-lg),
+      var(--inset-card);
     transform: translateY(-2px);
     border-left-color: #c8851a;
   }

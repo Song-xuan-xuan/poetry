@@ -62,10 +62,11 @@ function go(path) {
   justify-content: space-between;
   padding: 0 16px;
   height: 52px;
-  background: rgba(250, 250, 248, 0.72);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(250, 247, 240, 0.82) 100%);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  border-bottom: 1px solid rgba(200, 133, 26, 0.12);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .nav-brand {
@@ -99,7 +100,8 @@ function go(path) {
 .nav-tabs {
   display: flex;
   gap: 4px;
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(200, 133, 26, 0.05);
+  border: 1px solid rgba(200, 133, 26, 0.08);
   border-radius: 10px;
   padding: 3px;
 }
@@ -120,7 +122,11 @@ function go(path) {
 .nav-tab.active {
   background: white;
   color: #1D1D1F;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  font-weight: 600;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(200, 133, 26, 0.06);
 }
 
 .nav-tab:active {

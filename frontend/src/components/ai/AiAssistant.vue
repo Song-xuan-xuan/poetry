@@ -181,13 +181,15 @@ async function sendMessage() {
 
 <style scoped>
 .ai-assistant {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 16px;
   padding: 16px;
-  border: 0.5px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(200, 133, 26, 0.12);
+  box-shadow:
+    var(--shadow-card),
+    var(--inset-card);
   display: flex;
   flex-direction: column;
   min-height: 360px;
@@ -200,7 +202,7 @@ async function sendMessage() {
   justify-content: space-between;
   margin-bottom: 12px;
   padding-bottom: 12px;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(200, 133, 26, 0.10);
 }
 
 .header-icon {
@@ -219,19 +221,21 @@ async function sendMessage() {
   width: 28px;
   height: 28px;
   border-radius: 8px;
-  border: none;
-  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(200, 133, 26, 0.08);
+  background: rgba(0, 0, 0, 0.03);
   color: #AEAEB2;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .clear-btn:hover {
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.06);
   color: #6E6E73;
+  border-color: rgba(200, 133, 26, 0.12);
 }
 
 /* 预设问题 — 2 列网格 */
@@ -254,17 +258,22 @@ async function sendMessage() {
   gap: 8px;
   padding: 12px;
   border-radius: 12px;
-  background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(200, 133, 26, 0.08);
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: left;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .preset-card:hover {
   background: rgba(200, 133, 26, 0.06);
-  border-color: rgba(200, 133, 26, 0.15);
-  box-shadow: 0 2px 8px rgba(200, 133, 26, 0.08);
+  border-color: rgba(200, 133, 26, 0.18);
+  box-shadow:
+    0 2px 8px rgba(200, 133, 26, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 .preset-card:active {
@@ -349,14 +358,20 @@ async function sendMessage() {
   background: linear-gradient(135deg, #c8851a, #d4922e);
   color: white;
   border-bottom-right-radius: 4px;
-  box-shadow: 0 2px 8px rgba(200, 133, 26, 0.2);
+  border: 1px solid #b5760f;
+  box-shadow:
+    0 2px 8px rgba(200, 133, 26, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .bubble-ai {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   color: #1D1D1F;
   border-bottom-left-radius: 4px;
-  border: 0.5px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(200, 133, 26, 0.08);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .bubble-content :deep(.quote-mark) {
@@ -398,23 +413,26 @@ async function sendMessage() {
 .input-area {
   margin-top: 12px;
   padding-top: 12px;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.05);
+  border-top: 1px solid rgba(200, 133, 26, 0.08);
 }
 
 .input-wrapper {
   display: flex;
   gap: 8px;
   align-items: center;
-  background: rgba(0, 0, 0, 0.025);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 22px;
   padding: 3px 3px 3px 14px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(200, 133, 26, 0.10);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
   transition: all 0.2s ease;
 }
 
 .input-wrapper:focus-within {
-  border-color: rgba(200, 133, 26, 0.3);
-  box-shadow: 0 0 0 3px rgba(200, 133, 26, 0.06);
+  border-color: rgba(200, 133, 26, 0.25);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.04),
+    0 0 0 3px rgba(200, 133, 26, 0.08);
 }
 
 .chat-input {
@@ -435,8 +453,8 @@ async function sendMessage() {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: none;
-  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(200, 133, 26, 0.06);
+  background: rgba(0, 0, 0, 0.04);
   color: #AEAEB2;
   display: flex;
   align-items: center;
@@ -444,16 +462,23 @@ async function sendMessage() {
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .send-btn.active {
-  background: linear-gradient(135deg, #c8851a, #d4922e);
+  background: linear-gradient(180deg, #d4922e, #c8851a);
+  border: 1px solid #b5760f;
   color: white;
-  box-shadow: 0 2px 8px rgba(200, 133, 26, 0.25);
+  box-shadow:
+    0 2px 8px rgba(200, 133, 26, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .send-btn.active:hover {
-  background: linear-gradient(135deg, #b5760f, #c8851a);
+  background: linear-gradient(180deg, #c8851a, #b5760f);
+  box-shadow:
+    0 4px 12px rgba(200, 133, 26, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .send-btn:disabled {

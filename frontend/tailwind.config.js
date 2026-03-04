@@ -17,8 +17,9 @@ export default {
         'success-light': '#b7e8e6',
 
         // Apple 基础灰阶
-        'sys-bg': '#FAFAF8',       // 页面背景 (暖白)
-        'sys-bg-secondary': '#F2F1EF', // 次级背景
+        'sys-bg': 'transparent',       // 页面背景 (透明以显示全局背景)
+        'sys-bg-secondary': '#F2F0EB', // 次级背景
+        'sys-bg-warm': '#F7F3EC',  // 暖调背景
         'sys-card': 'rgba(255, 255, 255, 0.80)', // 磨砂卡片
         'sys-card-solid': '#FFFFFF',
         'sys-divider': 'rgba(0, 0, 0, 0.06)',
@@ -51,10 +52,22 @@ export default {
         'apple-xl': '20px',
       },
       boxShadow: {
-        'apple-sm': '0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06)',
-        'apple': '0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)',
-        'apple-lg': '0 4px 16px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04)',
-        'apple-xl': '0 8px 32px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.04)',
+        'apple-sm': '0 1px 2px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04)',
+        'apple': '0 2px 6px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05)',
+        'apple-lg': '0 4px 12px rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06)',
+        'apple-xl': '0 8px 24px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.06)',
+        'inset-sm': 'inset 0 1px 2px rgba(0,0,0,0.04)',
+        'inset': 'inset 0 2px 4px rgba(0,0,0,0.06)',
+        'inset-lg': 'inset 0 3px 6px rgba(0,0,0,0.08)',
+        'zen-card': '0 2px 6px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05), inset 0 1px 2px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(255,255,255,0.5)',
+      },
+      borderColor: {
+        'zen': 'rgba(200, 133, 26, 0.12)',
+        'zen-strong': 'rgba(200, 133, 26, 0.18)',
+        'zen-light': 'rgba(200, 133, 26, 0.06)',
+      },
+      letterSpacing: {
+        'zen-wide': '0.15em',
       },
       backdropBlur: {
         'apple': '20px',

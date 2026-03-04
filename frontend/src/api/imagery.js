@@ -6,5 +6,5 @@ import request from './index'
  * @returns {{ poem_summary: string, imagery_nodes: Array }}
  */
 export function analyzeImagery(params) {
-  return request.post('/imagery/analyze', params, { timeout: 60000 })
+  return request.post('/imagery/analyze', params, { timeout: 180000 })
 }

@@ -108,10 +108,11 @@ function go(path) {
   left: 0;
   width: 240px;
   height: 100vh;
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-right: 0.5px solid rgba(0, 0, 0, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(250, 247, 240, 0.85) 100%);
+  backdrop-filter: blur(24px) saturate(1.2);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  border-right: 1px solid rgba(200, 133, 26, 0.12);
+  box-shadow: 1px 0 4px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
   z-index: 100;
@@ -158,12 +159,11 @@ function go(path) {
 }
 
 .side-section-label {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #AEAEB2;
-  padding: 12px 12px 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #6E6E73;
+  padding: 14px 12px 6px;
   margin: 0;
 }
 
@@ -177,7 +177,7 @@ function go(path) {
   font-size: 14px;
   font-weight: 500;
   color: #6E6E73;
-  border: none;
+  border: 1px solid transparent;
   background: transparent;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -185,13 +185,17 @@ function go(path) {
 }
 
 .side-nav-item:hover {
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(200, 133, 26, 0.04);
   color: #1D1D1F;
+  border-color: rgba(200, 133, 26, 0.06);
 }
 
 .side-nav-item.active {
   background: rgba(200, 133, 26, 0.10);
   color: #c8851a;
+  border-color: rgba(200, 133, 26, 0.15);
+  box-shadow: inset 0 1px 2px rgba(200, 133, 26, 0.08);
+  font-weight: 600;
 }
 
 .side-nav-icon {
@@ -202,6 +206,6 @@ function go(path) {
 
 .side-footer {
   padding: 16px 20px;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.06);
+  border-top: 1px solid rgba(200, 133, 26, 0.08);
 }
 </style>

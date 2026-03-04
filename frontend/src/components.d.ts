@@ -7,9 +7,12 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AiAssistant: typeof import('./components/ai/AiAssistant.vue')['default']
     AnalysisPanel: typeof import('./components/poetry/AnalysisPanel.vue')['default']
     AuthorTag: typeof import('./components/poetry/AuthorTag.vue')['default']
     EmptyState: typeof import('./components/common/EmptyState.vue')['default']
+    ImageryDetail: typeof import('./components/imagery/ImageryDetail.vue')['default']
+    ImageryStarMap: typeof import('./components/imagery/ImageryStarMap.vue')['default']
     Loading: typeof import('./components/common/Loading.vue')['default']
     PoemCard: typeof import('./components/poetry/PoemCard.vue')['default']
     PoemText: typeof import('./components/poetry/PoemText.vue')['default']
@@ -21,6 +24,5 @@ declare module 'vue' {
     VanButton: typeof import('vant/es')['Button']
     VanIcon: typeof import('vant/es')['Icon']
     VanList: typeof import('vant/es')['List']
-    VanSlider: typeof import('vant/es')['Slider']
   }
 }

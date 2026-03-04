@@ -86,10 +86,10 @@ async def analyze(req: ImageryAnalyzeRequest) -> dict:
         return data
 
     except json.JSONDecodeError as e:
-        logger.warning("Imagery analysis JSON parse failed: %s", e)
+        logger.warning("Imagery analysis JSON parse failed: %s | raw: %s", e, raw[:200] if raw else "empty")
         return _fallback_analysis(req)
     except Exception as e:
-        logger.warning("Imagery analysis failed: %s", e)
+        logger.warning("Imagery analysis failed: %s (%s)", e, type(e).__name__)
         return _fallback_analysis(req)
 
 
