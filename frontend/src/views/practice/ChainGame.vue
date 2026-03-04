@@ -298,11 +298,80 @@ const aiInputPlaceholder = computed(() => {
   return '输入下一句诗…'
 })
 
+// 判断是否为认输/不知道类输入
+const FORFEIT_PATTERNS = /^(不知道|我不知道|不会|跳过|认输|投降|放弃|pass|skip|idk|不清楚|答不上|接不上|想不起)/i
+
+function isForfeitInput(text) {
+  return FORFEIT_PATTERNS.test(text.trim())
+}
+
+// 找到上一条 AI 出题消息
+function getLastAIQuestion() {
+  const history = challengeStore.chainHistory
+  for (let i = history.length - 1; i >= 0; i--) {
+    if (history[i].role === 'ai' && history[i].type === 'new_line') {
+      return history[i]
+    }
+  }
+  return null
+}
+
 async function submitAITurn() {
   const input = aiUserInput.value.trim()
   if (!input || aiThinking.value) return
 
-  // 用户消息
+  // 检测是否是认输/不知道
+  if (isForfeitInput(input) && challengeStore.chainHistory.length > 0) {
+    const lastQuestion = getLastAIQuestion()
+
+    challengeStore.addChainMessage({
+      role: 'user',
+      content: input,
+      type: 'forfeit',
+    })
+    aiUserInput.value = ''
+    aiThinking.value = true
+
+    await nextTick()
+    scrollChatToBottom()
+
+    try {
+      // 调用 AI，让它给出正确答案并出新题
+      const questionLine = lastQuestion ? lastQuestion.content : input
+      const data = await aiChainTurn(questionLine)
+
+      // AI 告知正确答案
+      challengeStore.addChainMessage({
+        role: 'ai',
+        content: data.ai_answer,
+        title: data.ai_answer_title,
+        author: data.ai_answer_author,
+        comment: '这回给你一道经典题！',
+        type: 'answer',
+      })
+
+      // AI 出新题
+      if (data.new_line) {
+        await new Promise(r => setTimeout(r, 600))
+        challengeStore.addChainMessage({
+          role: 'ai',
+          content: data.new_line,
+          title: data.new_line_title,
+          author: data.new_line_author,
+          type: 'new_line',
+        })
+      }
+    } catch {
+      showToast('AI 暂时无法应答，请重试')
+    } finally {
+      aiThinking.value = false
+      await nextTick()
+      scrollChatToBottom()
+    }
+    return
+  }
+
+  // 正常诗句回答流程
   challengeStore.addChainMessage({
     role: 'user',
     content: input,
